@@ -4,13 +4,13 @@ void settings() {
 }
 
 void setup()  {
-  background(255, 255, 255);
   noLoop();
 }
 
 void draw() {
-  My3DPoint eye = new My3DPoint(-100, -100, -5000);
-  My3DPoint origin = new My3DPoint(50, 50, 50);
+  background(255, 255, 255);
+  My3DPoint eye = new My3DPoint(0, 0, -5000);
+  My3DPoint origin = new My3DPoint(0, 0, 0);
   My3DBox input3DBox = new My3DBox(origin, 100, 150, 300);
   //rotated around x
   float[][] transform1 = rotateXMatrix(PI/2);
