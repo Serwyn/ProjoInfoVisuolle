@@ -1,25 +1,23 @@
 My3DBox input3DBox;
 My3DPoint eye;
+float boxX, boxY, boxZ;
 
 void settings() {
-  size (1000, 1000, P2D);
+  size (200, 200, P3D);
 }
 
 void setup()  {
-  background(255, 255, 255);
+  boxX = 100f;
+  boxY = 150f;
+  boxZ = 300f;
   eye = new My3DPoint(-200, -200, -5000);
   My3DPoint origin = new My3DPoint(450, 450, 450);
-  input3DBox = new My3DBox(origin, 100, 150, 300);
-  noLoop();
+  input3DBox = new My3DBox(origin, boxX, boxY, boxZ);
 }
 
 void draw() {
-  input3DBox.projectBox(eye).render();
-
   // Update the scale with mouse dragging
-  float[][] scaleMatrix = scaleMatrix(value, value, value);
-  input3DBox = input3DBox.transformBox(scaleMatrix);
-  input3DBox.projectBox(eye).render();
-  line(mouseX-66, mouseY, mouseX+66, mouseY);
-  line(mouseX, mouseY-66, mouseX, mouseY+66); 
+  background(255, 255, 255);
+  float[][] scaleMatrix = scaleMatrix(scaleFactor, scaleFactor, scaleFactor);
+  input3DBox.transformBox(scaleMatrix).projectBox(eye).render();
 }

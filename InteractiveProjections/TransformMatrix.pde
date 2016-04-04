@@ -29,7 +29,7 @@ float[][] scaleMatrix(float x, float y, float z) {
 float[][] translationMatrix(float x, float y, float z) {
   return(new float[][] 
     {{1, 0, 0, x}, 
-    {0, 0, 0, y}, 
-    {0, 0, 0, z}, 
+    {0, 1, 0, y}, 
+    {0, 0, 1, z}, 
     {0, 0, 0, 1}});
 }

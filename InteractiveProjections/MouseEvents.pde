@@ -1,9 +1,16 @@
-float value = 0f;
+float scaleFactor = 1f;
+boolean locked = false;
 
 void mouseDragged() {
-  value += 0.5;
+  if (locked) {
+    scaleFactor += 1;
+  }
 }
 
 void mousePressed() {
-  stroke(255); 
+  locked = true;
+}
+
+void mouseReleased() {
+  locked = false;
 }
