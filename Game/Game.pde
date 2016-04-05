@@ -1,30 +1,3 @@
-
-int gameSize = 800;
-float rX, rZ = 0;
-float sM = 400;
-float alpha1 = 0;
-float beta1 = 0;
-float alpha = 0;
-float beta = 0;
-boolean click = false;
-float centreX = 0;
-float centreY = 0;
-PVector gravityForce = new PVector(0, 0, 0);
-PVector velocity = new PVector(0, 0, 0);
-PVector sphereuh = new PVector(0, 0, 0);
-float boox = 200;
-float g = 0.2;
-float radius = 15;
-float cylinderBaseSize = 20;
-float cylinderHeight = 40;
-int cylinderResolution = 40;
-PShape cylinder = new PShape();
-float ratio = (gameSize*0.8)/(boox);
-boolean pause = false;
-
-ArrayList<PVector> cylindres = new ArrayList();
-
-
 void settings() {
   size(gameSize, gameSize, P3D);
 }
@@ -111,7 +84,7 @@ void draw() {
     float normalForce = 1;
     float mu = 0.01;
     float frictionMagnitude = normalForce * mu;
-    PVector friction = velocity.get();
+    PVector friction = velocity.copy();
     friction.mult(-1);
     friction.normalize();
     friction.mult(frictionMagnitude);
@@ -152,48 +125,6 @@ void draw() {
     
     for (PVector v : cylindres) {
       ellipse(v.x*ratio+gameSize*0.5, v.y*ratio+gameSize*0.5, 2*cylinderBaseSize*ratio, 2*cylinderBaseSize*ratio);
-    }
-  }
-}
-
-void mousePressed(MouseEvent event) {
-  click = true;
-  centreY = mouseY;
-  centreX = mouseX;
-
-  if (pause) {
-    cylindres.add(new PVector((mouseX-gameSize*0.5)/ratio, (mouseY-gameSize*0.5)/ratio));
-  }
-}
-
-void mouseReleased(MouseEvent event) {
-  click = false;
-  alpha1 = alpha;
-  beta1 = beta;
-}
-
-void mouseWheel(MouseEvent event) {
-  float e = event.getCount();
-  sM+=10*e;
-  if (sM<150) {
-    sM=150;
-  } else if (sM>800) {
-    sM=800;
-  }
-}
-
-void keyPressed(KeyEvent event) {
-  if (key == CODED) {
-    if (keyCode == SHIFT) {
-      pause = true;
-    }
-  }
-}
-
-void keyReleased(KeyEvent event) {
-  if (key == CODED) {
-    if (keyCode == SHIFT) {
-      pause = false;
     }
   }
 }
