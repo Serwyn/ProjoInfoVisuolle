@@ -3,7 +3,7 @@ void mousePressed(MouseEvent event) {
   centreY = mouseY;
   centreX = mouseX;
 
-  if (pause) {
+  if (pause && mouseOn2DBoard()) {
     cylindres.add(new PVector((mouseX-gameSize*0.5)/ratio, (mouseY-gameSize*0.5)/ratio));
   }
 }
@@ -22,4 +22,11 @@ void mouseWheel(MouseEvent event) {
   } else if (sensibilite>800) {
     sensibilite=800;
   }
+}
+
+boolean mouseOn2DBoard() {
+  if(mouseX > gameSize*0.1 && mouseY > gameSize*0.1 && mouseX < gameSize*0.9 && mouseY < gameSize*0.9) {
+   return true; 
+  }
+  return false;
 }
