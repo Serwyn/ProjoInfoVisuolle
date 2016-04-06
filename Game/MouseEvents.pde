@@ -16,10 +16,10 @@ void mouseReleased(MouseEvent event) {
 
 void mouseWheel(MouseEvent event) {
   float e = event.getCount();
-  sM+=10*e;
-  if (sM<150) {
-    sM=150;
-  } else if (sM>800) {
-    sM=800;
+  sensibilite+=10*e;
+  if (sensibilite<150) {
+    sensibilite=150;
+  } else if (sensibilite>800) {
+    sensibilite=800;
   }
 }
