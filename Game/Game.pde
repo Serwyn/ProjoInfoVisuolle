@@ -6,6 +6,7 @@ void setup() {
 }
 
 void draw() {
+  pointLight(255, 255, 255, gameSize+100, 100, gameSize+100);
   background(200);
   if (!pause) { 
     draw3DBoard();

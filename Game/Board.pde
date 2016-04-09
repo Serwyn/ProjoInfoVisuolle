@@ -11,7 +11,7 @@ void draw3DBoard() {
   rotate(rZ); // rotate Z axis function of mouse
   rotateX(rX); // rotate X axis function of mouse
   stroke(255);
-  fill(30, 30, 30); // fill the stroke light grey
+  fill(70, 70, 70); // fill the stroke light grey
   box(boox, 10, boox);
   fill(255, 255, 255); // fill the board black
 }
