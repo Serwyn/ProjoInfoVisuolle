@@ -80,6 +80,8 @@ void bounceEffect() {
       velocity = new PVector(velocity.x-2*sp*n.x, 0, velocity.z-2*sp*n.y);
       sphereuh.x-=n.x*(cylinderBaseSize+radius-d);
       sphereuh.z-=n.y*(cylinderBaseSize+radius-d);
+      prev = velocity.mag();
+      score += prev;
       
     }
   }

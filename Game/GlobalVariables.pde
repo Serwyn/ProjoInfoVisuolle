@@ -35,3 +35,9 @@ float ratio;
 
 //UI
 PGraphics mySurface;
+PGraphics myScore;
+PFont calibri;
+
+//SCORE
+float score;
+float prev;

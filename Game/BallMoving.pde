@@ -15,7 +15,17 @@ PVector ballVelocityVector() {
   sphereuh = sphereuh.add(velocity);
   sphereuh.x = max(min(sphereuh.x, boox/2), -boox/2);
   sphereuh.z = max(min(sphereuh.z, boox/2), -boox/2);
-  if (abs(sphereuh.x)==boox/2) velocity.x = -velocity.x*0.8;
-  if (abs(sphereuh.z)==boox/2) velocity.z = -velocity.z*0.8;
+  if (abs(sphereuh.x)==boox/2) {
+    prev = -velocity.mag();
+    score += prev;
+    velocity.x = -velocity.x*0.8;
+    
+  }
+  if (abs(sphereuh.z)==boox/2) {
+    prev = -velocity.mag();
+    score += prev;
+    velocity.z = -velocity.z*0.8;
+
+  }
   return velocity;
 }

@@ -4,6 +4,8 @@ void settings() {
 void setup() {
   cylinderSetup();
   setupUI();
+  String[] fontList = PFont.list();
+  printArray(fontList);
 }
 
 void draw() {
