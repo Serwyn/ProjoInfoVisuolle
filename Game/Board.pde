@@ -4,7 +4,7 @@ void draw3DBoard() {
     alpha = max(min(alpha1+(mouseY-centreY)/sensibilite*PI/3.0, PI/3.0), -PI/3.0); 
     beta  = max(min(beta1+(mouseX-centreX)/sensibilite*PI/3.0, PI/3.0), -PI/3.0);
   }
-  translate(gameSize/2, gameSize/2, gameSize/2); // put the plate in the center of our window
+  translate(gameSize/2, gameSize/2, gameSize*2/5); // put the plate in the center of our window
   pushMatrix();
   rX = alpha;
   rZ = beta;
@@ -16,8 +16,12 @@ void draw3DBoard() {
   fill(255, 255, 255); // fill the board black
 }
 
-void draw2DBoard() {
-  fill(30, 30, 30);
-  rect(gameSize*0.1, gameSize*0.1, gameSize*0.8, gameSize*0.8);
-  fill(255, 255, 255);
+void draw2DBoard(float x, float y, float size, PGraphics truc) {
+  truc.fill(30, 30, 30);
+  truc.rect(x, y, size, size);
+  truc.fill(255, 255, 255);
+}
+
+void draw2DBoard(float x, float y, float size) {
+  draw2DBoard(x, y, size, g);
 }

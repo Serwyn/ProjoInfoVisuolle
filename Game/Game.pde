@@ -3,11 +3,13 @@ void settings() {
 }
 void setup() {
   cylinderSetup();
+  setupUI();
 }
 
 void draw() {
   pointLight(255, 255, 255, gameSize+100, 100, gameSize+100);
   background(200);
+  drawUI();
   if (!pause) { 
     draw3DBoard();
     drawCylindersOn3DBoard();
@@ -16,7 +18,7 @@ void draw() {
     bounceEffect();
     drawSphere();
   } else {
-    draw2DBoard();
-    drawCylindersOn2DBoard();
+    draw2DBoard(gameSize*0.1, gameSize*0.1, gameSize*0.8);
+    drawCylindersOn2DBoard(gameSize*0.1, gameSize*0.1, gameSize*0.8);
   }
 }

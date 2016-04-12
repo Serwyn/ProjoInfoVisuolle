@@ -58,9 +58,13 @@ void drawCylindersOn3DBoard() {
 }
 
 // Draws Cylinder in the sky view of the board
-void drawCylindersOn2DBoard() {
+void drawCylindersOn2DBoard(float x, float y, float size) {
+  drawCylindersOn2DBoard(x, y, size, g);
+}
+void drawCylindersOn2DBoard(float x, float y, float size, PGraphics truc) {
+  ratio = size/boox;
   for (PVector v : cylindres) {
-    ellipse(v.x*ratio+gameSize*0.5, v.y*ratio+gameSize*0.5, 2*cylinderBaseSize*ratio, 2*cylinderBaseSize*ratio);
+    truc.ellipse(v.x*ratio+x+size/2, v.y*ratio+y+size/2, 2*cylinderBaseSize*ratio, 2*cylinderBaseSize*ratio);
   }
 }
 
@@ -74,6 +78,9 @@ void bounceEffect() {
       PVector n = (new PVector(v.x-sphereuh.x, v.y-sphereuh.z)).normalize();
       float sp = velocity.x*n.x+velocity.z*n.y;
       velocity = new PVector(velocity.x-2*sp*n.x, 0, velocity.z-2*sp*n.y);
+      sphereuh.x-=n.x*(cylinderBaseSize+radius-d);
+      sphereuh.z-=n.y*(cylinderBaseSize+radius-d);
+      
     }
   }
 }

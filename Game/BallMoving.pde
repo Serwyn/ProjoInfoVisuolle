@@ -1,7 +1,7 @@
 
 PVector ballVelocityVector() {
-  gravityForce.x = sin(rZ) * g;
-  gravityForce.z = -sin(rX) * g;
+  gravityForce.x = sin(rZ) * gr;
+  gravityForce.z = -sin(rX) * gr;
 
   float normalForce = 1;
   float mu = 0.01;

@@ -25,8 +25,5 @@ void mouseWheel(MouseEvent event) {
 }
 
 boolean mouseOn2DBoard() {
-  if(mouseX > gameSize*0.1 && mouseY > gameSize*0.1 && mouseX < gameSize*0.9 && mouseY < gameSize*0.9) {
-   return true; 
-  }
-  return false;
+  return (mouseX > gameSize*0.1 && mouseY > gameSize*0.1 && mouseX < gameSize*0.9 && mouseY < gameSize*0.9);
 }

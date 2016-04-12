@@ -5,7 +5,7 @@ float sensibilite = 400;
 // PHYSICS
 PVector gravityForce = new PVector(0, 0, 0);
 PVector velocity = new PVector(0, 0, 0);
-float g = 0.2;
+float gr = 0.2;
 
 // GEO OBJECTS
 PVector sphereuh = new PVector(0, 0, 0);
@@ -31,4 +31,7 @@ float radius = 15;
 float cylinderBaseSize = 20;
 float cylinderHeight = 40;
 int cylinderResolution = 40;
-float ratio = (gameSize*0.8)/(boox);
+float ratio;
+
+//UI
+PGraphics mySurface;
