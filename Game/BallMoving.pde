@@ -18,12 +18,15 @@ PVector ballVelocityVector() {
   if (abs(sphereuh.x)==boox/2) {
     prev = -velocity.mag();
     score += prev;
+    allPrevs.add(score);
+    while(allPrevs.size()>50){allPrevs.remove(allPrevs.get(0));}
     velocity.x = -velocity.x*0.8;
     
   }
   if (abs(sphereuh.z)==boox/2) {
     prev = -velocity.mag();
     score += prev;
+    allPrevs.add(score);
     velocity.z = -velocity.z*0.8;
 
   }

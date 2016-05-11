@@ -4,15 +4,16 @@ void settings() {
 void setup() {
   cylinderSetup();
   setupUI();
-  String[] fontList = PFont.list();
-  printArray(fontList);
+  //String[] fontList = PFont.list();
+  //printArray(fontList);
 }
 
 void draw() {
-  pointLight(255, 255, 255, gameSize+100, 100, gameSize+100);
+  
   background(200);
   drawUI();
   if (!pause) { 
+    pointLight(255, 255, 255, gameSize+100, 100, gameSize+100);
     draw3DBoard();
     drawCylindersOn3DBoard();
     noStroke();

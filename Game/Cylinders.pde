@@ -71,7 +71,7 @@ void drawCylindersOn2DBoard(float x, float y, float size, PGraphics truc) {
 // Activates the bounce effect on cylinders
 void bounceEffect() {
   for (PVector v : cylindres) {
-    println(v.x, v.y, sphereuh.x, sphereuh.z);
+    println(allPrevs);
     float d = sqrt(pow((sphereuh.x-v.x), 2) + pow((sphereuh.z-v.y), 2));
     if (d<cylinderBaseSize+radius) {
       println(true);
@@ -82,6 +82,8 @@ void bounceEffect() {
       sphereuh.z-=n.y*(cylinderBaseSize+radius-d);
       prev = velocity.mag();
       score += prev;
+      while(allPrevs.size()>50){allPrevs.remove(allPrevs.get(0));}
+      allPrevs.add(score);
       
     }
   }

@@ -1,5 +1,5 @@
 // GAME PARAMETERS
-int gameSize = 800;
+int gameSize = 1000;
 float sensibilite = 400;
 
 // PHYSICS
@@ -36,8 +36,10 @@ float ratio;
 //UI
 PGraphics mySurface;
 PGraphics myScore;
+PGraphics myChart;
 PFont calibri;
 
 //SCORE
 float score;
 float prev;
+ArrayList<Float> allPrevs = new ArrayList<Float>();
