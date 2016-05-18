@@ -9,17 +9,18 @@ void settings() {
 }
 void setup() {
   base = loadImage("board1.jpg");
-  img = hueInterval(base, 80, 135);
-  img = brightInterval(img, 60, 150);  
-  img = satInterval(img, 100, 255);
+  img = hueInterval(base, 100, 135);
+  img = brightInterval(img, 30, 200);  
+  img = satInterval(img, 80, 255);
   img = gaussianBlur(img);
-  img = binaryThreshold(img, 10);
+  img = binaryThreshold(img, 40);
   img = sobel(img);
   noLoop(); // no interactive behaviour: draw() will be called only once.
 }
 void draw() {
-  image(base,0,0);
-  hough(img);
+  image(base, 0, 0);
+  ArrayList<PVector> lines = hough(img);
+  ArrayList<PVector> intersections = getIntersections(lines);
   image(accumulatorImg, 800, 0);
   image(img, 1400, 0);
 }
