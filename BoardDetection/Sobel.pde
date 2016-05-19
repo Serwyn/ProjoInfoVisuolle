@@ -10,7 +10,7 @@ PImage sobel(PImage img) {
   for (int i = 0; i < img.width * img.height; i++) {
     result.pixels[i] = color(0);
   }
-  float max=0;
+  float max = 0;
   float[] buffer = new float[img.width * img.height];
   int borderSize = 1;
   int N = 3; // kernel size

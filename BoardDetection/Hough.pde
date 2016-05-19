@@ -13,6 +13,16 @@ ArrayList<PVector> hough(PImage edgeImg) {
   // our accumulator (with a 1 pix margin around)
   int[] accumulator = new int[(phiDim + 2) * (rDim + 2)];
 
+  // pre-compute the sin and cos values
+  float[] tabSin = new float[phiDim];
+  float[] tabCos = new float[phiDim];
+  float ang = 0;
+  float inverseR = 1.f / discretizationStepsR;
+  for (int accPhi = 0; accPhi < phiDim; ang += discretizationStepsPhi, accPhi++) {
+    // we can also pre-multiply by (1/discretizationStepsR) since we need it in the Hough loop
+    tabSin[accPhi] = (float) (Math.sin(ang) * inverseR);
+    tabCos[accPhi] = (float) (Math.cos(ang) * inverseR);
+  }
   // Fill the accumulator: on edge points (ie, white pixels of the edge
   // image), store all possible (r, phi) pairs describing lines going
   // through the point.
@@ -24,10 +34,13 @@ ArrayList<PVector> hough(PImage edgeImg) {
         // pixel (x,y), convert (r,phi) to coordinates in the
         // accumulator, and increment accordingly the accumulator.
         for (int i = 0; i < phiDim; ++i) {
-          float phi = discretizationStepsPhi*i;
+          /*float phi = discretizationStepsPhi*i;
           int r = (int) ((x*cos(phi) + y*sin(phi))/discretizationStepsR);
           r += (rDim - 1) / 2;
-          ++accumulator[(i+1) * (rDim+2) + r + 1];
+          ++accumulator[(i+1) * (rDim+2) + r + 1];*/
+          float r = x * tabCos[i] + y * tabSin[i];
+          int indexR = (int) r + (rDim - 1) / 2;
+          ++accumulator[(i+1) * (rDim + 2) + 1 + indexR];
         }
         // Be careful: r may be negative, so you may want to center onto
         // the accumulator with something like: r += (rDim - 1) / 2
@@ -49,7 +62,7 @@ ArrayList<PVector> hough(PImage edgeImg) {
   int neighbourhood = 10;
   // only search around lines with more that this amount of votes
   // (to be adapted to your image)
-  int minVotes = 200;
+  int minVotes = 150;
   for (int accR = 0; accR < rDim; accR++) {
     for (int accPhi = 0; accPhi < phiDim; accPhi++) {
       // compute current index in the accumulator
@@ -79,16 +92,14 @@ ArrayList<PVector> hough(PImage edgeImg) {
       }
     }
   }
-  for (int idx = 0; idx < accumulator.length; idx++) {
-    if (accumulator[idx] > 120) {
-      bestCandidates.add(idx);
-    }
-  }
+  int nbMax = 4;
+
   Collections.sort(bestCandidates, new HoughComparator(accumulator));
+  int nb = min(bestCandidates.size(), nbMax);
 
   ArrayList<PVector> result = new ArrayList<PVector>();
 
-  for (int i = 0; i < 8; i++) {
+  for (int i = 0; i < nb; i++) {
     int idx = bestCandidates.get(i);
     // first, compute back the (r, phi) polar coordinates:
     int accPhi = (int) (idx / (rDim + 2)) - 1;
@@ -147,4 +158,13 @@ ArrayList<PVector> getIntersections(List<PVector> lines) {
     }
   }
   return intersections;
+}
+
+PVector intersection(PVector line1, PVector line2) {
+
+  float d = cos(line2.y) * sin(line1.y) - cos(line1.y) * sin(line2.y);
+  int x = (int)((line2.x * sin(line1.y) - line1.x * sin(line2.y))/d);
+  int y = (int)((-line2.x * cos(line1.y) + line1.x * cos(line2.y))/d);
+
+  return new PVector(x, y);
 }

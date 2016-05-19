@@ -7,7 +7,7 @@ PImage convolute(PImage img, float[][] kernel, float weight) {
 
   int borderSize = 1;
   int kernelSize = 3;
-  int N = 3; // kernelSize
+  int N = kernel.length;
   //
   // for each (x,y) pixel in the image:
   // - multiply intensities for pixels in the range
@@ -24,15 +24,17 @@ PImage convolute(PImage img, float[][] kernel, float weight) {
           sum += brightness(img.pixels[idx]) * kernel[i+(kernelSize/2)][j+(kernelSize/2)];
         }
       }
-      result.pixels[x + y * img.width] = color(sum/weight);
+      result.pixels[x + y * img.width] = color(min(sum/weight, 255));
     }
   }
   return result;
 }
 
+
+
 PImage gaussianBlur(PImage img) {
   float[][] gKernel = { { 9, 12, 9 }, 
     { 12, 15, 12 }, 
     { 9, 12, 9 } };
-  return  convolute(img, gKernel, 60.f);
+  return  convolute(img, gKernel, 10.f);
 }
