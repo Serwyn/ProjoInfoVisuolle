@@ -35,7 +35,7 @@ void setup() {
       base = loadImage("board4.jpg");
     }*/
   
-  base = loadImage("board4.jpg");
+  base = loadImage("board1.jpg");
   
   //thresholds
   img = hueInterval(base, 100, 135);
@@ -56,14 +56,10 @@ void setup() {
 }
 void draw() {
  
-  //base.resize(400, 300); 
   image(base, 0, 0);
   /*ArrayList<PVector>lines = hough(img);
   getIntersections(lines);
-  //accumulatorImg.resize(300, 300); 
   image(accumulatorImg, 800, 0);
-  
-  //img.resize(300, 400); 
   image(img, 1400, 0);*/
   
   QuadGraph graph = new QuadGraph();
