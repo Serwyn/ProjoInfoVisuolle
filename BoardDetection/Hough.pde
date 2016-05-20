@@ -34,10 +34,6 @@ ArrayList<PVector> hough(PImage edgeImg) {
         // pixel (x,y), convert (r,phi) to coordinates in the
         // accumulator, and increment accordingly the accumulator.
         for (int i = 0; i < phiDim; ++i) {
-          /*float phi = discretizationStepsPhi*i;
-          int r = (int) ((x*cos(phi) + y*sin(phi))/discretizationStepsR);
-          r += (rDim - 1) / 2;
-          ++accumulator[(i+1) * (rDim+2) + r + 1];*/
           float r = x * tabCos[i] + y * tabSin[i];
           int indexR = (int) r + (rDim - 1) / 2;
           ++accumulator[(i+1) * (rDim + 2) + 1 + indexR];

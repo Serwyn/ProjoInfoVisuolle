@@ -11,41 +11,21 @@ float[][]  gaussianBlur= { { 9, 12, 9 },
     { 9, 12, 9 } };
 
 void settings() {
-  //size(640, 480);  // size for the cam
   size(2200, 600);
 }
 void setup() {
-  /*String[] cameras = Capture.list();
-  if (cameras.length == 0) {
-    println("There are no cameras available for capture.");
-    exit();
-  } else {
-    println("Available cameras:");
-    for (int i = 0; i < cameras.length; i++) {
-        println(cameras[i]);
-    }
-    cam = new Capture(this, cameras[0]);
-    cam.start();
-  }
-
-  if (cam.available() == true) {
-      cam.read();
-      base = cam.get();
-    } else {
-      base = loadImage("board4.jpg");
-    }*/
   
   base = loadImage("board1.jpg");
   
-  //thresholds
+  //Hue, Brightness and Saturation thresholds
   img = hueInterval(base, 100, 135);
   img = brightInterval(img, 30, 200);  
   img = satInterval(img, 80, 255);
  
-  //blur
+  //Blurring
   img = convolute(img,gaussianBlur, 10f); 
   
-  
+  //Intensity thresholding
   img = binaryThreshold(img, 40);
   
   //sobel
@@ -57,10 +37,6 @@ void setup() {
 void draw() {
  
   image(base, 0, 0);
-  /*ArrayList<PVector>lines = hough(img);
-  getIntersections(lines);
-  image(accumulatorImg, 800, 0);
-  image(img, 1400, 0);*/
   
   QuadGraph graph = new QuadGraph();
   ArrayList<PVector> lines = hough(img);
