@@ -26,7 +26,7 @@ void setup() {
   img = convolute(img,gaussianBlur, 10f); 
   
   //Intensity thresholding
-  img = binaryThreshold(img, 40);
+  img = binaryThreshold(img, 250);
   
   //sobel
   img = sobel(img);
